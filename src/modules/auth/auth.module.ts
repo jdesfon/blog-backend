@@ -6,7 +6,7 @@ import { UsersModule } from '../users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
-import { jwtConstants } from 'src/constants';
+import { jwtConstants } from '../../constants';
 
 
 @Module({

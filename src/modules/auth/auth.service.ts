@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
+import omit from 'lodash.omit';
 
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { User } from '../database/entities/user.entity';
@@ -17,7 +18,7 @@ export class AuthService {
         const user = await this.usersService.findOne(email);
 
         if (user && bcrypt.compareSync(password, user.password)) {
-            const { password, ...result } = user;
+            const result = omit(user, ['password']);
             return result as User;
         }
 

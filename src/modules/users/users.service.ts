@@ -20,14 +20,4 @@ export class UsersService {
         const user = await this.db.getRepository(User).findOne({ email });
         return user;
     }
-
-
-    // TODO FIND ALL
-    async findAll() { }
-
-    // TODO UPDATE ROLES
-    async updateRole() { }
-
-    // TODO DELETE
-    async delete() { }
 }
