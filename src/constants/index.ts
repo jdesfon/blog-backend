@@ -7,6 +7,6 @@ export enum UserRole {
     USER = 'user'
 }
 
-export const jwtConstants = {
-    secret: 'watermelon'
+export const JwtConstants = {
+    secret: process.env.JWT_SECRET || 'watermelonIsGood'
 }

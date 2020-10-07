@@ -1,0 +1,70 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  firstname: String!
+  lastname: String!
+  email: String!
+  password: String!
+  roles: [String!]!
+  articles: [Article!]!
+  comments: [Comment!]!
+}
+
+type Comment {
+  id: ID!
+  fk_user: User!
+  fk_article: Article!
+  body: String!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Article {
+  id: ID!
+  fk_user: User!
+  title: String!
+  picture_url: String!
+  body: String!
+  tags: [String!]!
+  isPrivate: Boolean!
+  comments: Comment
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type Query {
+  article(id: Float!): Article!
+  articles: [Article!]!
+}
+
+type Mutation {
+  createArticle(createArticleDto: CreateArticleDto!): Article!
+  updateArticle(updateCommentDto: UpdateCommentDto!, commentId: Float!): Comment!
+  removeArticle(articleId: Float!): Boolean!
+  createComment(createCommentDto: CreateCommentDto!, articleId: Float!): Comment!
+  removeComment(commentId: Float!): Boolean!
+}
+
+input CreateArticleDto {
+  title: String!
+  body: String!
+  tags: [String!]!
+  picture_url: String!
+  isPrivate: Boolean = false
+}
+
+input UpdateCommentDto {
+  body: String
+}
+
+input CreateCommentDto {
+  body: String!
+}
