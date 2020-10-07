@@ -1,4 +1,5 @@
 import { IsString, IsEmail } from 'class-validator';
+import { UserRole } from 'src/constants';
 import { UserRoleType } from 'src/modules/database/entities/user.entity';
 
 export class CreateUserDto {
@@ -14,6 +15,6 @@ export class CreateUserDto {
     @IsString()
     password: string;
 
-    @IsString({ each: true })
-    roles: UserRoleType[] = ['user'];
+    @IsString()
+    role: UserRoleType = UserRole.NORMAL;
 }

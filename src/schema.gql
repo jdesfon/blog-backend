@@ -8,7 +8,7 @@ type User {
   lastname: String!
   email: String!
   password: String!
-  roles: [String!]!
+  role: String!
   articles: [Article!]!
   comments: [Comment!]!
 }
@@ -43,6 +43,9 @@ type Article {
 type Query {
   article(id: Float!): Article!
   articles: [Article!]!
+  myArticles: [Article!]!
+  comments: [Comment!]!
+  commentsByArticle(articleId: Float!): [Comment!]!
 }
 
 type Mutation {
@@ -51,6 +54,9 @@ type Mutation {
   removeArticle(articleId: Float!): Boolean!
   createComment(createCommentDto: CreateCommentDto!, articleId: Float!): Comment!
   removeComment(commentId: Float!): Boolean!
+  updateUserRole(role: String!): User!
+  removeArticleAsAdmin(articleId: Float!): Boolean!
+  removeCommentAsAdmin(commentId: Float!): Boolean!
 }
 
 input CreateArticleDto {

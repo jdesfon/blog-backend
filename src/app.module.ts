@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
 /*  Modules */
+import { AdminModule } from './modules/admin/admin.module';
 import { ArticlesModule } from './modules/articles/articles.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CommentsModule } from './modules/comments/comments.module';
@@ -27,6 +28,7 @@ import { databaseProviders } from './modules/database/providers/database.provide
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    AdminModule,
     ArticlesModule,
     AuthModule,
     CommentsModule,
@@ -35,9 +37,10 @@ import { databaseProviders } from './modules/database/providers/database.provide
     GraphQLModule.forRoot({
       context: ({ req }) => ({ req }),
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      include: [ArticlesModule, CommentsModule],
+      include: [AdminModule, ArticlesModule, CommentsModule],
       playground: true
     }),
+    AdminModule,
   ],
   controllers: [
     AppController,

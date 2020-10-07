@@ -7,8 +7,8 @@ import { Article } from "../database/entities/article.entity";
 import { User } from "../database/entities/user.entity";
 
 import { ArticlesService } from "./articles.service";
-import { CreateArticleDto } from "./dto/createArticle.dto";
-import { UpdateArticleDto } from "./dto/updateArticle.dto";
+import { CreateArticleDto } from "./dto/create-article.dto";
+import { UpdateArticleDto } from "./dto/update-article.dto";
 
 
 @Resolver(() => Article)
@@ -28,6 +28,18 @@ export class ArticleResolver {
     @Query(() => [Article])
     async articles(): Promise<Article[]> {
         const articles = await this.articleService.findAll();
+        if (!articles) {
+            throw new NotFoundException();
+        }
+        return articles;
+    }
+
+    @Query(() => [Article])
+    @UseGuards(GqlAuthGuard)
+    async myArticles(
+        @CurrentUser() user: User,
+    ): Promise<Article[]> {
+        const articles = await this.articleService.findArticlesByUser(user.email);
         if (!articles) {
             throw new NotFoundException();
         }

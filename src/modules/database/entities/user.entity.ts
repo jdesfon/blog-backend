@@ -1,10 +1,11 @@
 import { Field, ObjectType, ID } from '@nestjs/graphql';
+import { UserRole } from 'src/constants';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 import { Article } from './article.entity';
 import { Comment } from './comment.entity';
 
-export type UserRoleType = "admin" | "user"
+export type UserRoleType = "normal" | "admin"
 
 @ObjectType()
 @Entity({ name: 'users' })
@@ -29,9 +30,9 @@ export class User {
     @Column("varchar")
     password: string;
 
-    @Field(() => [String])
-    @Column("simple-array", { default: ['user'] })
-    roles: UserRoleType[]
+    @Field()
+    @Column("varchar", { default: UserRole.NORMAL })
+    role: UserRoleType;
 
     @Field(() => [Article])
     @OneToMany(() => Article, article => article.fk_user)

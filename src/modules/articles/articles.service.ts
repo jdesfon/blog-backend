@@ -4,8 +4,8 @@ import { Connection, DeleteResult } from 'typeorm';
 import { Article } from '../database/entities/article.entity';
 import { User } from '../database/entities/user.entity';
 import { UsersService } from '../users/users.service';
-import { CreateArticleDto } from './dto/createArticle.dto';
-import { UpdateArticleDto } from './dto/updateArticle.dto';
+import { CreateArticleDto } from './dto/create-article.dto';
+import { UpdateArticleDto } from './dto/update-article.dto';
 
 @Injectable()
 export class ArticlesService {
@@ -20,7 +20,12 @@ export class ArticlesService {
     }
 
     async findAll(): Promise<Article[]> {
-        return this.db.getRepository(Article).find();
+        return this.db.getRepository(Article).find({ isPrivate: false });
+    }
+
+    async findArticlesByUser(userEmail: string): Promise<Article[]> {
+        const user = await this.usersService.findByEmail(userEmail);
+        return this.db.getRepository(Article).find({ fk_user: user });
     }
 
     async create(userEmail: string, createArticleDto: CreateArticleDto): Promise<Article> {
@@ -43,5 +48,9 @@ export class ArticlesService {
     async delete(userEmail: string, articleId: number): Promise<DeleteResult> {
         const user = await this.usersService.findByEmail(userEmail);
         return await this.db.manager.delete(Article, { id: articleId, fk_user: user });
+    }
+
+    async deleteById(articleId: number): Promise<DeleteResult> {
+        return await this.db.manager.delete(Article, { id: articleId });
     }
 }

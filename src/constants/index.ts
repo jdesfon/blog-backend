@@ -4,7 +4,7 @@ export enum Provider {
 
 export enum UserRole {
     ADMIN = 'admin',
-    USER = 'user'
+    NORMAL = 'normal'
 }
 
 export const JwtConstants = {

@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Connection } from 'typeorm';
 
 import { Provider } from '../../constants';
-import { User } from '../database/entities/user.entity';
+import { User, UserRoleType } from '../database/entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
@@ -24,5 +24,11 @@ export class UsersService {
     async findById(id: number): Promise<User | undefined> {
         const user = await this.db.getRepository(User).findOne(id);
         return user;
+    }
+
+    async updateRole(userEmail: string, role: UserRoleType): Promise<User> {
+        await this.db.manager.update(User, { email: userEmail }, { role });
+        const updatedUser = await this.findByEmail(userEmail);
+        return updatedUser;
     }
 }
