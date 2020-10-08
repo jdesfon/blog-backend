@@ -1,5 +1,5 @@
 import { Field, ObjectType, ID } from '@nestjs/graphql';
-import { UserRole } from 'src/constants';
+import { UserRole } from '../../../constants';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 import { Article } from './article.entity';

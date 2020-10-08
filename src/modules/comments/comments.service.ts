@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Provider } from 'src/constants';
+import { Provider } from '../../constants';
 import { Connection, DeleteResult } from 'typeorm';
-import { Article } from '../database/entities/article.entity';
 import { User } from '../database/entities/user.entity';
 import { Comment } from '../database/entities/comment.entity';
 import { CreateCommentDto } from './dto/create-comment.dto';

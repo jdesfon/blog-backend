@@ -1,11 +1,15 @@
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
+import { DatabaseModule } from '../database/database.module';
 import { UsersModule } from '../users/users.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { JwtStrategy } from './jwt.strategy';
-import { LocalStrategy } from './local.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { LocalStrategy } from './strategies/local.strategy';
+import configuration from '../../config/app-configuration';
+import dbConfiguration from '../../config/db-configuration';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -13,6 +17,11 @@ describe('AuthService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
+        ConfigModule.forRoot({
+          load: [configuration, dbConfiguration]
+        }),
+        ConfigService,
+        DatabaseModule,
         UsersModule,
         PassportModule,
         JwtModule.register({

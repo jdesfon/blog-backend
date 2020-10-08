@@ -1,6 +1,6 @@
 import { Field, InputType } from "@nestjs/graphql";
-import { Article } from "src/modules/database/entities/article.entity";
-import { User } from "src/modules/database/entities/user.entity";
+import { Article } from "../../../modules/database/entities/article.entity";
+import { User } from "../../../modules/database/entities/user.entity";
 
 @InputType()
 export class CreateCommentDto {

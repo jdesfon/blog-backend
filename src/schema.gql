@@ -50,9 +50,10 @@ type Query {
 
 type Mutation {
   createArticle(createArticleDto: CreateArticleDto!): Article!
-  updateArticle(updateCommentDto: UpdateCommentDto!, commentId: Float!): Comment!
+  updateArticle(updateArticleDto: UpdateArticleDto!, articleId: Float!): Article!
   removeArticle(articleId: Float!): Boolean!
   createComment(createCommentDto: CreateCommentDto!, articleId: Float!): Comment!
+  updateComment(updateCommentDto: UpdateCommentDto!, commentId: Float!): Comment!
   removeComment(commentId: Float!): Boolean!
   updateUserRole(role: String!): User!
   removeArticleAsAdmin(articleId: Float!): Boolean!
@@ -67,10 +68,18 @@ input CreateArticleDto {
   isPrivate: Boolean = false
 }
 
-input UpdateCommentDto {
+input UpdateArticleDto {
+  title: String
   body: String
+  tags: [String!]
+  picture_url: String
+  isPrivate: Boolean
 }
 
 input CreateCommentDto {
   body: String!
+}
+
+input UpdateCommentDto {
+  body: String
 }

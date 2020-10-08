@@ -1,6 +1,6 @@
 import { NotFoundException, UseGuards } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { CurrentUser } from "src/decorators/current-user.decorator";
+import { CurrentUser } from "../../decorators/current-user.decorator";
 import { GqlAuthGuard } from "../auth/guards/graphql-auth.guard";
 
 import { Article } from "../database/entities/article.entity";

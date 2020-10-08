@@ -2,7 +2,7 @@ import { NotFoundException, UseGuards } from "@nestjs/common";
 import { Query, Resolver, Mutation, Args } from "@nestjs/graphql";
 
 import { GqlAuthGuard } from "../auth/guards/graphql-auth.guard";
-import { CurrentUser } from "src/decorators/current-user.decorator";
+import { CurrentUser } from "../../decorators/current-user.decorator";
 
 import { Comment } from '../database/entities/comment.entity';
 import { User } from "../database/entities/user.entity";
@@ -50,7 +50,7 @@ export class CommentResolver {
 
     @Mutation(() => Comment)
     @UseGuards(GqlAuthGuard)
-    async updateArticle(
+    async updateComment(
         @Args('commentId') commentId: number,
         @Args('updateCommentDto') updateCommentDto: UpdateCommentDto,
         @CurrentUser() user: User,

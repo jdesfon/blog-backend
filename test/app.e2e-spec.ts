@@ -11,9 +11,7 @@ import { DatabaseModule } from './../src/modules/database/database.module';
 import { UsersModule } from './../src/modules/users/users.module';
 
 import { AppController } from './../src/app.controller';
-import { ArticlesController } from './../src/modules/articles/articles.controller';
 import { AuthController } from './../src/modules/auth/auth.controller';
-import { CommentsController } from './../src/modules/comments/comments.controller';
 
 import { ArticlesService } from './../src/modules/articles/articles.service';
 import { CommentsService } from './../src/modules/comments/comments.service';
@@ -38,8 +36,6 @@ describe('AppController (e2e)', () => {
       controllers: [
         AppController,
         AuthController,
-        ArticlesController,
-        CommentsController
       ],
       providers: [
         ...databaseProviders,

@@ -2,7 +2,7 @@ import { ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/com
 import { Reflector } from "@nestjs/core";
 import { GqlExecutionContext } from "@nestjs/graphql";
 import { AuthGuard } from "@nestjs/passport";
-import { UserRole } from "src/constants";
+
 
 @Injectable()
 export class GqlRoleGuard extends AuthGuard('jwt') {

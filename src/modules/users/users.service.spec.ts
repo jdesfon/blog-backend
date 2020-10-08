@@ -8,7 +8,6 @@ describe('UsersService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [DatabaseModule],
-      exports: [DatabaseModule],
       providers: [UsersService],
     }).compile();
 

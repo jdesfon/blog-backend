@@ -1,9 +1,9 @@
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
-import { CurrentUser } from "src/decorators/current-user.decorator";
+import { CurrentUser } from "../../decorators/current-user.decorator";
 import { User, UserRoleType } from "../database/entities/user.entity";
 import { AdminService } from "./admin.service";
-import { UserRole } from "src/constants";
-import { Auth } from "src/decorators/auth.decorator";
+import { UserRole } from "../../constants";
+import { Auth } from "../../decorators/auth.decorator";
 
 @Resolver()
 export class AdminResolver {

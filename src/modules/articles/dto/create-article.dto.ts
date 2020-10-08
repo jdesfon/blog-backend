@@ -1,5 +1,5 @@
 import { Field, InputType } from "@nestjs/graphql";
-import { User } from "src/modules/database/entities/user.entity";
+import { User } from "../../../modules/database/entities/user.entity";
 
 @InputType()
 export class CreateArticleDto {

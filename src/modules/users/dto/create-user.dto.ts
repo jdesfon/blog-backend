@@ -1,6 +1,6 @@
 import { IsString, IsEmail } from 'class-validator';
-import { UserRole } from 'src/constants';
-import { UserRoleType } from 'src/modules/database/entities/user.entity';
+import { UserRole } from '../../../constants';
+import { UserRoleType } from '../../database/entities/user.entity';
 
 export class CreateUserDto {
     @IsString()

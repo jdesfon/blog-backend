@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Provider } from 'src/constants';
+import { Provider } from '../../constants';
 import { Connection, DeleteResult } from 'typeorm';
 import { Article } from '../database/entities/article.entity';
-import { User } from '../database/entities/user.entity';
 import { UsersService } from '../users/users.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';

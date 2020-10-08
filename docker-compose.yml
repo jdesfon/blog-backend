@@ -19,3 +19,22 @@ services:
     restart: always
     ports:
       - 8080:8080
+    depends_on: 
+      - postgres
+
+  blog:
+    build: .
+    container_name: blog
+    restart: always
+    ports: 
+      - 3000:3000
+    depends_on: 
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: myblog
+      DB_USERNAME: totem
+      DB_PASSWORD: candidate
+      JWT_SECRET_KEY: tenet
+      APP_PORT: 3000

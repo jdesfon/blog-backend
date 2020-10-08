@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { DeleteResult } from 'typeorm';
 import { ArticlesService } from '../articles/articles.service';
 import { CommentsService } from '../comments/comments.service';
 import { User, UserRoleType } from '../database/entities/user.entity';
